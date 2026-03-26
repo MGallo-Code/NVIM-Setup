@@ -15,5 +15,13 @@ local function term_toggle()
   Snacks.terminal(nil, { cwd = _term_cwd or LazyVim.root() })
 end
 
+local function term_toggle_right()
+  if vim.bo.buftype ~= "terminal" then
+    _term_cwd = LazyVim.root()
+  end
+  Snacks.terminal(nil, { cwd = _term_cwd or LazyVim.root(), count = 2, win = { position = "right" } })
+end
+
 vim.keymap.set({ "n", "t" }, "<c-/>", term_toggle, { desc = "Terminal (Root Dir)" })
 vim.keymap.set({ "n", "t" }, "<c-_>", term_toggle, { desc = "which_key_ignore" })
+vim.keymap.set({ "n", "t" }, "<c-s-/>", term_toggle_right, { desc = "Terminal (Right)" })
