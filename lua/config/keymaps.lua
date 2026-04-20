@@ -24,4 +24,4 @@ end
 
 vim.keymap.set({ "n", "t" }, "<c-/>", term_toggle, { desc = "Terminal (Root Dir)" })
 vim.keymap.set({ "n", "t" }, "<c-_>", term_toggle, { desc = "which_key_ignore" })
-vim.keymap.set({ "n", "t" }, "<c-s-/>", term_toggle_right, { desc = "Terminal (Right)" })
+vim.keymap.set({ "n", "t" }, "<c-\\>", term_toggle_right, { desc = "Terminal (Right)" })
