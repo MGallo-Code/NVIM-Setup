@@ -15,10 +15,10 @@ My LazyVim-based setup..leader is `Space`.
 
 ## Terminal
 
-| Key            | Action                     |
-| -------------- | -------------------------- |
-| `Ctrl+/`       | Toggle bottom terminal     |
-| `Ctrl+Shift+/` | Toggle right-side terminal |
+| Key       | Action                     |
+| --------- | -------------------------- |
+| `Ctrl+/`  | Toggle bottom terminal     |
+| `Ctrl+]`  | Toggle right-side terminal |
 
 ## Git
 
@@ -56,6 +56,21 @@ My LazyVim-based setup..leader is `Space`.
 | ----------- | ------------------- |
 | `<leader>H` | Add file to harpoon |
 | `<leader>h` | Harpoon menu        |
+
+## Ask Claude
+
+One-shot prompts to Claude from inside nvim. Answer appears in a floating window at the bottom.
+
+| Key            | Mode  | Action                                                |
+| -------------- | ----- | ----------------------------------------------------- |
+| `<leader>aa`   | n + x | Ask Claude (new conversation)                         |
+| `<leader>ac`   | n + x | Ask Claude (continue last session in cwd)             |
+| `<leader>ai`   | n + x | Ask Claude (full env: all MCP servers, all tools)     |
+| `<leader>an`   | n     | Clear Claude scratch                                  |
+| `<leader>aw`   | n     | Toggle Claude window                                  |
+| `q` (in float) | n     | Close Claude window                                   |
+
+Visual mode includes the selection as a fenced code block with a line-range badge. All modes prepend the current file path so Claude can `Read`/`Grep` related files. Lite modes (`aa`/`ac`) strip MCP servers and restrict to read-only tools for speed.
 
 ## Extras Enabled
 
