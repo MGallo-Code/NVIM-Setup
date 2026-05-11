@@ -2,6 +2,15 @@
 
 My LazyVim-based setup..leader is `Space`.
 
+## Setup
+
+Clone to `~/.config/nvim`, then run `./setup.sh` to wire up nvim-adjacent configs (currently: lazygit). The script is idempotent — safe to re-run after pulling.
+
+```sh
+git clone git@github:MGallo-Code/NVIM-Setup.git ~/.config/nvim
+~/.config/nvim/setup.sh
+```
+
 ## Navigation
 
 | Key                              | Action                                 |
@@ -39,10 +48,13 @@ My LazyVim-based setup..leader is `Space`.
 | `Space`             | Stage/unstage file     |
 | `a`                 | Stage/unstage all      |
 | `c`                 | Commit                 |
+| `G` (files panel)   | Generate commit message with Claude (opens in editor for review) |
 | `P`                 | Push                   |
 | `p`                 | Pull                   |
 | `q`                 | Quit                   |
 | `?`                 | Show panel keybindings |
+
+`G` keybinding lives in `lazygit/config.yml` (this repo) and is symlinked to `~/.config/lazygit/config.yml` by `setup.sh`. Pipes staged diff to `claude -p` (sonnet), writes to `.git/COMMIT_EDITMSG`, opens `git commit -e` so `$EDITOR` (nvim) loads it for review.
 
 ## Tools
 

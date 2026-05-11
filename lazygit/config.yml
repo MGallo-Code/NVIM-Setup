@@ -1,0 +1,21 @@
+customCommands:
+  - key: 'G'
+    context: 'files'
+    description: 'Generate commit message with Claude'
+    command: |
+      if [ -z "$(git diff --staged)" ]; then
+        echo "Nothing staged. Stage changes first (space on a file), then press G."
+        exit 0
+      fi
+      echo "Generating commit message with Claude..."
+      GIT_DIR=$(git rev-parse --git-dir)
+      if ! git diff --staged | claude -p --model sonnet \
+          --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
+          --allowed-tools "Read,Grep,Glob" \
+          --append-system-prompt "Generate ONE git commit message: single line, imperative mood, no trailing period, no Co-Authored-By, no preamble, no surrounding quotes. Be descriptive but concise. Output ONLY the message." \
+          > "$GIT_DIR/COMMIT_EDITMSG"; then
+        echo "Claude failed to generate a message."
+        exit 1
+      fi
+      git commit -e -F "$GIT_DIR/COMMIT_EDITMSG"
+    output: terminal
